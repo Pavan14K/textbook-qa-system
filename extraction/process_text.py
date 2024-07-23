@@ -1,5 +1,6 @@
 import re
 
+
 def identify_structure(text):
     chapters = re.split(r'\nChapter \d+\n', text)
     structure = {}
@@ -36,11 +37,17 @@ def validate_structure(structure):
 
 if __name__ == "__main__":
     import sys
+    # Check if the correct number of arguments is provided
+    if len(sys.argv) < 3:
+        print("Usage: python process_text.py <input_path> <output_path>")
+        sys.exit(1)
+    
     input_path = sys.argv[1]
     output_path = sys.argv[2]
     
     
-    with open(input_path, 'r') as f:
+    # Open the input file with UTF-8 encoding
+    with open(input_path, 'r', encoding='utf-8') as f:
         text = f.read()
         
     

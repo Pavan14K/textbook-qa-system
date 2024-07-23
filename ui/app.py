@@ -1,11 +1,14 @@
+import os
 import streamlit as st
 from transformers import pipeline
 import pickle
 
+
 st.title("Textbook QA System")
 
 query = st.text_input("Enter your query:")
-index_path = 'index.pkl'  # Update with your actual index file path
+base_dir = os.path.dirname(os.path.abspath(__file__))
+index_path = os.path.join(base_dir, '..', 'data', 'index1.pkl')  # Update with your actual index file path
 
 if query:
     with open(index_path, 'rb') as f:
@@ -22,3 +25,9 @@ if query:
     
     st.write("Answer:", result['answer'])
     st.write("Context:", result['context'])
+    
+def main():
+    print("Index loaded successfully!")
+
+if __name__ == '__main__':
+    main()
